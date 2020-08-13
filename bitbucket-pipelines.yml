@@ -28,8 +28,8 @@ pipelines:
           #Decrypt server key
           - openssl enc -nosalt -aes-256-cbc -d -in assets/server.key.enc -out assets/server.key -base64 -K $DECRYPTION_KEY -iv $DECRYPTION_IV
           #Authorize target org
-          - sfdx force:auth:jwt:grant --instanceurl https://test.salesforce.com  --clientid $CONSUMER_KEY --jwtkeyfile assets/server.key --username $USER_NAME --setalias UAT
+          - sfdx force:auth:jwt:grant --instanceurl $SFDC_PROD_URL --clientid $CONSUMER_KEY --jwtkeyfile assets/server.key --username $SFDC_PROD_USER --setalias VijayORG
           #Deploy to target deployment org and run unit tests
-          - sfdx force:mdapi:deploy --wait 10 --deploydir $DEPLOYDIR --targetusername UAT --testlevel $TESTLEVEL
+          - sfdx force:mdapi:deploy --wait 10 --deploydir $DEPLOYDIR --targetusername VijayORG --testlevel $TESTLEVEL
           #Example shows how to run a check-only deploy.
           #- sfdx force:mdapi:deploy --checkonly --wait 10 --deploydir $DEPLOYDIR --targetusername UAT --testlevel $TESTLEVEL
