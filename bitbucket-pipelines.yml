@@ -26,7 +26,7 @@ pipelines:
           - sfdx --version
           - sfdx plugins --core
           #Decrypt server key
-          - openssl enc -nosalt -aes-256-cbc -d -in assets/server.key.enc -out assets/server.key -base64 -K $DECRYPTION_KEY -iv $DECRYPTION_IV
+          #- openssl enc -nosalt -aes-256-cbc -d -in assets/server.key.enc -out assets/server.key -base64 -K $DECRYPTION_KEY -iv $DECRYPTION_IV
           #Authorize target org
           - sfdx force:auth:jwt:grant --instanceurl $SFDC_PROD_URL --clientid $CONSUMER_KEY --jwtkeyfile assets/server.key --username $SFDC_PROD_USER --setalias VijayORG
           #Deploy to target deployment org and run unit tests
